@@ -20,4 +20,10 @@ class LibrarySpec extends FunSuite {
     assert(library.searchISBN("ipszbehyh") === Book("Harry Potter and the Deathly Hallows", "Rowling, J.K.", "ipszbehyh"))
   }
 
+  test("Visitors can search by complete title") {
+    val library = new Library(sampleBooks)
+    assert(library.searchtitle("Harry Potter and the Deathly Hallows") === Book("Harry Potter and the Deathly Hallows", "Rowling, J.K.", "ipszbehyh"))
+  }
+
+
 }
