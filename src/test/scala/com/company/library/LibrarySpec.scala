@@ -5,13 +5,14 @@ import org.scalatest.Matchers._
 
 class LibrarySpec extends FunSuite {
 
-  test("some words to describe my test") {
-    "aString" shouldBe "aString"
-  }
+  val sampleBooks = List[Book] (
+    Book("Da Vinci Code,The", "Brown, Dan", "pidtkl"),
+    Book("Harry Potter and the Deathly Hallows", "Rowling, J.K.", "ipszbehyh")
+  )
 
-  test("Library Dummy test returns hello world") {
-    val library = new Library()
-    assert(library.hello() === "Hello world")
+  test("Library can hold books") {
+    val library = new Library(sampleBooks)
+    assert(library.books === sampleBooks)
   }
 
 }

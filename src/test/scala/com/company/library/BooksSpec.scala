@@ -6,11 +6,7 @@ import org.scalatest.Matchers._
 
 class BooksSpec extends FunSuite {
 
-  test("different words to describe my test") {
-    "aString" shouldBe "aString"
-  }
-
-  test("Book object can be made") {
+  test("Book object holds correct info") {
     val book = Book("Da Vinci Code,The", "Brown, Dan", "pidtkl")
     assert(book.title === "Da Vinci Code,The")
     assert(book.author === "Brown, Dan")
