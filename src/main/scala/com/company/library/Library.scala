@@ -3,6 +3,9 @@ package com.company.library
 class Library(val books: List[Book] = Books.all) {
 
   def searchISBN(isbn: String): Book = {
-    books.find(book => book.ISBN == isbn).head
+    val result = books.find(book => book.ISBN == isbn).head
+    if(result == null) println("Sorry, there is no book with that ISBN number")
+    result
   }
+
 }
