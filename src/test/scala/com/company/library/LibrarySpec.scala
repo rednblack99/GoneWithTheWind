@@ -21,13 +21,22 @@ class LibrarySpec extends FunSuite {
     assert(library.searchISBN("ipszbehyh") === Book("Harry Potter and the Deathly Hallows", "Rowling, J.K.", "ipszbehyh"))
   }
 
-  test("Visitors can search by complete title") {
+  test("Visitors can search by partial title") {
     val library = new Library(sampleBooks)
     val results = library.searchTitle("Harry Potter")
     assert(results(0) === Book("Harry Potter and the Deathly Hallows", "Rowling, J.K.", "ipszbehyh"))
     assert(results(1) === Book("Harry Potter and the Prisoner of Azkaban", "Rowling, J.K.", "iamvmb"))
     results should not contain Book("Da Vinci Code,The", "Brown, Dan", "pidtkl")
   }
+
+  test("Visitors can search by partial author") {
+    val library = new Library(sampleBooks)
+    val results = library.searchAuthor("Rowling")
+    assert(results(0) === Book("Harry Potter and the Deathly Hallows", "Rowling, J.K.", "ipszbehyh"))
+    assert(results(1) === Book("Harry Potter and the Prisoner of Azkaban", "Rowling, J.K.", "iamvmb"))
+    results should not contain Book("Da Vinci Code,The", "Brown, Dan", "pidtkl")
+  }
+
 
 
 }
