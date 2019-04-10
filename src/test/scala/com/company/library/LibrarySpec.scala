@@ -9,4 +9,9 @@ class LibrarySpec extends FunSuite {
     "aString" shouldBe "aString"
   }
 
+  test("Library Dummy test returns hello world") {
+    val library = new Library()
+    assert(library.hello() === "Hello world")
+  }
+
 }
