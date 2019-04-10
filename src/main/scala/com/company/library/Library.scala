@@ -8,4 +8,11 @@ class Library(val books: List[Book] = Books.all) {
     result
   }
 
+  def searchTitle(title: String): Book = {
+    val result = books.find(book => book.title == title).head
+    if(result == null) println("Sorry, there is no book with that title")
+    result
+  }
+
+
 }
