@@ -14,5 +14,11 @@ class Library(val books: List[Book] = Books.all) {
     results
   }
 
+  def searchAuthor(name: String): List[Book] = {
+    val results = books.filter(_.author.contains(name))
+    if(results == null) println("Sorry, there are no books written by that author")
+    results
+  }
+
 
 }
