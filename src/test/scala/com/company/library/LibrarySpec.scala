@@ -8,7 +8,8 @@ class LibrarySpec extends FunSuite {
   val sampleBooks = List[Book] (
     Book("Da Vinci Code,The", "Brown, Dan", "pidtkl"),
     Book("Harry Potter and the Deathly Hallows", "Rowling, J.K.", "ipszbehyh"),
-    Book("Harry Potter and the Prisoner of Azkaban", "Rowling, J.K.", "iamvmb")
+    Book("Harry Potter and the Prisoner of Azkaban", "Rowling, J.K.", "iamvmb"),
+    Book("God Delusion,The", "Dawkins, Richard", "giuivxo")
   )
 
   test("Library can hold books") {
@@ -40,8 +41,13 @@ class LibrarySpec extends FunSuite {
   test("Library can lend books to users") {
     val library = new Library(sampleBooks)
     library.loan("ipszbehyh")
-    val results = library.onLoan(_)
     assert(library.onLoan("ipszbehyh") === true)
+  }
+
+  test("Reference books cannot be loaned out") {
+    val library = new Library(sampleBooks)
+    library.loan("giuivxo")
+    assert(library.onLoan("giuivxo") === false)
   }
 
 }
