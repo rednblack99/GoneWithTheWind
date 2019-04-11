@@ -10,7 +10,10 @@ class FeatureSpec extends FunSuite {
     Book("Da Vinci Code,The", "Brown, Dan", "pidtkl"),
     Book("Harry Potter and the Deathly Hallows", "Rowling, J.K.", "ipszbehyh"),
     Book("Harry Potter and the Prisoner of Azkaban", "Rowling, J.K.", "iamvmb"),
-    Book("God Delusion,The", "Dawkins, Richard", "giuivxo", true)
+    Book("God Delusion,The", "Dawkins, Richard", "giuivxo", true),
+    Book("Eats, Shoots and Leaves:The Zero Tolerance Approach to Punctuation", "Truss, Lynne", "tfmsxhk"),
+    Book("Northern Lights:His Dark Materials S.", "Pullman, Philip", "lgzf")
+
   )
 
   val library = new Library(sampleBooks)
@@ -55,8 +58,11 @@ class FeatureSpec extends FunSuite {
   }
 
   test("User can see name of person who loaned book") {
-    library.loan("iamvmb", "Jasper Fforde")
-    assert(library.whoLoaned("iamvmb") === "Jasper Fforde")
+    library.loan("tfmsxhk", "Jasper Fforde")
+    assert(library.whoLoaned("tfmsxhk") === "Jasper Fforde")
+    library.loan("lgzf", "Everybody sensible")
+    assert(library.whoLoaned("lgzf") === "Everybody sensible")
+
   }
 
 }

@@ -4,7 +4,7 @@ import scala.collection.mutable.ListBuffer
 
 class Library(val books: List[Book] = Books.all) {
 
-  var onLoan = new ListBuffer[Book]
+  var loanedBooks = new ListBuffer[Loan]
 
   def throwError(searchType: String): String = {
     searchType match {
@@ -34,8 +34,9 @@ class Library(val books: List[Book] = Books.all) {
     results
   }
 
-  def loan(isbn: String): Unit = {
+  def loan(isbn: String, name: String = "N/A"): Unit = {
     val result = searchISBN(isbn)
+    loanedBooks += new Loan(result, name)
     if (result.onLoan) throwError("onLoan")
     if (!result.reference) result.onLoan = true
   }
@@ -49,6 +50,12 @@ class Library(val books: List[Book] = Books.all) {
     val result = searchISBN(isbn)
     if(!result.onLoan) throwError("alreadyReturned")
     result.onLoan = false
+  }
+
+  def whoLoaned(isbn: String): String = {
+    val result = loanedBooks.find(Loan => Loan.book.ISBN == isbn).head
+    if(result == null) throwError("ISBN")
+    result.name
   }
 
 
