@@ -40,8 +40,8 @@ class LibrarySpec extends FunSuite {
   test("Library can lend books to users") {
     val library = new Library(sampleBooks)
     library.loan("ipszbehyh")
-    val results = library.onLoan
-    assert(results(0) === Book("Harry Potter and the Deathly Hallows", "Rowling, J.K.", "ipszbehyh"))
+    val results = library.onLoan(_)
+    assert(library.onLoan("ipszbehyh") === true)
   }
 
 }

@@ -28,5 +28,14 @@ class Library(val books: List[Book] = Books.all) {
     results
   }
 
+  def loan(isbn: String): Unit = {
+    books.find(book => book.ISBN == isbn).head.onLoan = true
+  }
+
+  def onLoan(isbn: String): Boolean = {
+    val result = books.find(book => book.ISBN == isbn).head
+    if (result.onLoan == true) true else false
+  }
+
 
 }
