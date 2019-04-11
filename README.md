@@ -102,7 +102,7 @@ I need to know whether a book is available or on loan
 ```text
 As a librarian,
 So that I can update my stock levels,
-I need to be able update the library when a book is returned 
+I need to be able to update the library when a book is returned
 ```
 
 ```text
