@@ -37,6 +37,11 @@ class LibrarySpec extends FunSuite {
     results should not contain Book("Da Vinci Code,The", "Brown, Dan", "pidtkl")
   }
 
-
+  test("Library can lend books to users") {
+    val library = new Library(sampleBooks)
+    library.loan("ipszbehyh")
+    val results = library.onLoan
+    assert(results(0) === Book("Harry Potter and the Deathly Hallows", "Rowling, J.K.", "ipszbehyh"))
+  }
 
 }
