@@ -54,4 +54,9 @@ class FeatureSpec extends FunSuite {
     assert(library.onLoan("giuivxo") === false)
   }
 
+  test("User can see name of person who loaned book") {
+    library.loan("iamvmb", "Jasper Fforde")
+    assert(library.whoLoaned("iamvmb") === "Jasper Fforde")
+  }
+
 }
