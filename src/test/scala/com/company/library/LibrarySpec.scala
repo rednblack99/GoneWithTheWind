@@ -8,46 +8,42 @@ class LibrarySpec extends FunSuite {
   val sampleBooks = List[Book] (
     Book("Da Vinci Code,The", "Brown, Dan", "pidtkl"),
     Book("Harry Potter and the Deathly Hallows", "Rowling, J.K.", "ipszbehyh"),
-    Book("Harry Potter and the Prisoner of Azkaban", "Rowling, J.K.", "iamvmb"),
-    Book("God Delusion,The", "Dawkins, Richard", "giuivxo", true)
   )
 
+  val library = new Library(sampleBooks)
+
   test("Library can hold books") {
-    val library = new Library(sampleBooks)
     assert(library.books === sampleBooks)
   }
 
-  test("Visitors can search by complete ISBN") {
-    val library = new Library(sampleBooks)
+  test("error") {
+    assert(library.error("isbn") === "Sorry, there is no book with that ISBN number")
+    assert(library.error("title") === "Sorry, there are no books containing that title")
+    assert(library.error("author") === "Sorry, there are no books written by that author")
+  }
+
+  test("searchISBN") {
     assert(library.searchISBN("ipszbehyh") === Book("Harry Potter and the Deathly Hallows", "Rowling, J.K.", "ipszbehyh"))
   }
 
-  test("Visitors can search by partial title") {
-    val library = new Library(sampleBooks)
+  test("searchTitle") {
     val results = library.searchTitle("Harry Potter")
     assert(results(0) === Book("Harry Potter and the Deathly Hallows", "Rowling, J.K.", "ipszbehyh"))
-    assert(results(1) === Book("Harry Potter and the Prisoner of Azkaban", "Rowling, J.K.", "iamvmb"))
-    results should not contain Book("Da Vinci Code,The", "Brown, Dan", "pidtkl")
   }
 
-  test("Visitors can search by partial author") {
-    val library = new Library(sampleBooks)
+  test("searchAuthor") {
     val results = library.searchAuthor("Rowling")
     assert(results(0) === Book("Harry Potter and the Deathly Hallows", "Rowling, J.K.", "ipszbehyh"))
-    assert(results(1) === Book("Harry Potter and the Prisoner of Azkaban", "Rowling, J.K.", "iamvmb"))
-    results should not contain Book("Da Vinci Code,The", "Brown, Dan", "pidtkl")
   }
 
-  test("Library can lend books to users") {
-    val library = new Library(sampleBooks)
+  test("loan") {
+    assert(library.onLoan("ipszbehyh") === false)
     library.loan("ipszbehyh")
     assert(library.onLoan("ipszbehyh") === true)
   }
 
-  test("Reference books cannot be loaned out") {
-    val library = new Library(sampleBooks)
-    library.loan("giuivxo")
-    assert(library.onLoan("giuivxo") === false)
+  test("onLoan") {
+    assert(library.onLoan("pidtkl") === false)
   }
 
 }

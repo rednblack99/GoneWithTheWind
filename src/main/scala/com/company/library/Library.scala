@@ -30,7 +30,7 @@ class Library(val books: List[Book] = Books.all) {
 
   def loan(isbn: String): Unit = {
     val result = books.find(book => book.ISBN == isbn).head
-    if (result.reference == false) result.onLoan = true
+    if (!result.reference) result.onLoan = true
   }
 
   def onLoan(isbn: String): Boolean = {
