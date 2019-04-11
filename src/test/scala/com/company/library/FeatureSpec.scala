@@ -62,7 +62,6 @@ class FeatureSpec extends FunSuite {
     assert(library.whoLoaned("tfmsxhk") === "Jasper Fforde")
     library.loan("lgzf", "Everybody sensible")
     assert(library.whoLoaned("lgzf") === "Everybody sensible")
-
   }
 
 }

@@ -36,7 +36,7 @@ class Library(val books: List[Book] = Books.all) {
 
   def loan(isbn: String, name: String = "N/A"): Unit = {
     val result = searchISBN(isbn)
-    loanedBooks += new Loan(result, name)
+    loanedBooks += Loan(result, name)
     if (result.onLoan) throwError("onLoan")
     if (!result.reference) result.onLoan = true
   }
@@ -56,6 +56,10 @@ class Library(val books: List[Book] = Books.all) {
     val result = loanedBooks.find(Loan => Loan.book.ISBN == isbn).head
     if(result == null) throwError("ISBN")
     result.name
+  }
+
+  def lateLoans: ListBuffer[Loan] = {
+    loanedBooks.filter(_.late)
   }
 
 
