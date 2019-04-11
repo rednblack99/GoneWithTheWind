@@ -1,6 +1,10 @@
 package com.company.library
 
+import scala.collection.mutable.ListBuffer
+
 class Library(val books: List[Book] = Books.all) {
+
+  var onLoan = new ListBuffer[Book]
 
   def throwError(searchType: String): String = {
     searchType match {
@@ -31,18 +35,18 @@ class Library(val books: List[Book] = Books.all) {
   }
 
   def loan(isbn: String): Unit = {
-    val result = books.find(book => book.ISBN == isbn).head
+    val result = searchISBN(isbn)
     if (result.onLoan) throwError("onLoan")
     if (!result.reference) result.onLoan = true
   }
 
   def onLoan(isbn: String): Boolean = {
-    val result = books.find(book => book.ISBN == isbn).head
+    val result = searchISBN(isbn)
     if (result.onLoan) true else false
   }
 
   def returnBook(isbn: String): Unit = {
-    val result = books.find(book => book.ISBN == isbn).head
+    val result = searchISBN(isbn)
     if(!result.onLoan) throwError("alreadyReturned")
     result.onLoan = false
   }
