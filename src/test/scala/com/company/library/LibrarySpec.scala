@@ -17,9 +17,9 @@ class LibrarySpec extends FunSuite {
   }
 
   test("error") {
-    assert(library.error("isbn") === "Sorry, there is no book with that ISBN number")
-    assert(library.error("title") === "Sorry, there are no books containing that title")
-    assert(library.error("author") === "Sorry, there are no books written by that author")
+    assertThrows[Exception] { library.throwError("isbn")}
+    assertThrows[Exception] { library.throwError("title")}
+    assertThrows[Exception] { library.throwError("author")}
   }
 
   test("searchISBN") {
