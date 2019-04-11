@@ -46,4 +46,11 @@ class LibrarySpec extends FunSuite {
     assert(library.onLoan("pidtkl") === false)
   }
 
+  test("returnBook") {
+    library.loan("pidtkl")
+    library.returnBook("pidtkl")
+    assert(library.onLoan("pidtkl") === false)
+  }
+
+
 }

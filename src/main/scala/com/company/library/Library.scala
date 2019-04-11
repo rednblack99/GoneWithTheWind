@@ -7,6 +7,8 @@ class Library(val books: List[Book] = Books.all) {
       case "isbn" => throw new Exception("Sorry, there is no book with that ISBN number")
       case "title" => throw new Exception("Sorry, there are no books containing that title")
       case "author" => throw new Exception("Sorry, there are no books written by that author")
+      case "onLoan" => throw new Exception("Sorry, that book is already on loan")
+      case "alreadyReturned" => throw new Exception("Sorry, that book has already been returned")
     }
   }
 
@@ -30,6 +32,7 @@ class Library(val books: List[Book] = Books.all) {
 
   def loan(isbn: String): Unit = {
     val result = books.find(book => book.ISBN == isbn).head
+    if (result.onLoan) throwError("onLoan")
     if (!result.reference) result.onLoan = true
   }
 
@@ -37,5 +40,12 @@ class Library(val books: List[Book] = Books.all) {
     val result = books.find(book => book.ISBN == isbn).head
     if (result.onLoan) true else false
   }
+
+  def returnBook(isbn: String): Unit = {
+    val result = books.find(book => book.ISBN == isbn).head
+    if(!result.onLoan) throwError("alreadyReturned")
+    result.onLoan = false
+  }
+
 
 }
