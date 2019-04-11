@@ -62,5 +62,11 @@ class Library(val books: List[Book] = Books.all) {
     loanedBooks.filter(_.late)
   }
 
+  def usersWithLateLoan: ListBuffer[String] = {
+    var lateUsers = new ListBuffer[String]
+    val late = lateLoans
+    late.foreach {lateUsers += _.name}
+    lateUsers
+  }
 
 }

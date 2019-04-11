@@ -1,5 +1,7 @@
 package com.company.library
 
+import java.time.LocalDate
+
 import org.scalatest.FunSuite
 import org.scalatest._
 import org.scalatest.Matchers._
