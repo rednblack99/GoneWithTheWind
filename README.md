@@ -1,22 +1,28 @@
 # Gone With The Wind
 
-## Instructions
+## Description
 
-You have a library of books and are offering them to the world - you are lending so many books now that it is becoming hard to keep track of what you have.  You decided to use your programming fu to build an application which can keep track of them for you.
+A Scala application that manages a library of books. It currently supports the following features:
 
-##### Getting started
+* Stores a list of books
+* Allows users to search by complete ISBN, as well as partial author or title
+* Allows users to loan a book - with the exception of reference books
+* Allows users to check if a book has been loaned
 
-* clone the project
-* import via IntelliJ IDEA
+## Installation
 
-##### Requirements
+* Clone this repo
+* Import into IntelliJ IDEA
+* Open a terminal in IntelliJ
+* Run tests with `$ sbt test`
 
-* implements the user stories listed below (optional ones not required)
-* compiles
-* has tests
-* frequent commits
+## Approach
 
-##### User Stories
+I used Scala Test to test-drive the development of this app, using a red, green, refactor cycle to meet the requirements of each user story in turn. Where possible, I started with the simplest solution and refactored from there (eg. dummy error messages before implementing exceptions).
+
+I attempted the single responsibility principle with regard to classes and methods, but in particular I don't think this was entirely successful regarding the library class. Moving forward I would like to extract 'search' and 'error' into separate classes.
+
+## User Stories
 
 ```text
 As a visitor,
@@ -88,5 +94,9 @@ So that I can manage my library correctly,
 I want to fine users who are late returning their books
 
 ```
+
+## Contributing
+
+If you would like to contribute please feel free to fork this repo, install it using the instructions above and make a pull request with your suggested amends.
 
 
