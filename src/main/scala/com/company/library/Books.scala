@@ -105,4 +105,4 @@ object Books {
   )
 }
 
-case class Book(title: String, author: String, ISBN: String, var onLoan: Boolean = false)
+case class Book(title: String, author: String, ISBN: String, reference: Boolean = false, var onLoan: Boolean = false)

@@ -9,7 +9,7 @@ class LibrarySpec extends FunSuite {
     Book("Da Vinci Code,The", "Brown, Dan", "pidtkl"),
     Book("Harry Potter and the Deathly Hallows", "Rowling, J.K.", "ipszbehyh"),
     Book("Harry Potter and the Prisoner of Azkaban", "Rowling, J.K.", "iamvmb"),
-    Book("God Delusion,The", "Dawkins, Richard", "giuivxo")
+    Book("God Delusion,The", "Dawkins, Richard", "giuivxo", true)
   )
 
   test("Library can hold books") {

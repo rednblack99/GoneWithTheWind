@@ -29,13 +29,13 @@ class Library(val books: List[Book] = Books.all) {
   }
 
   def loan(isbn: String): Unit = {
-    books.find(book => book.ISBN == isbn).head.onLoan = true
+    val result = books.find(book => book.ISBN == isbn).head
+    if (result.reference == false) result.onLoan = true
   }
 
   def onLoan(isbn: String): Boolean = {
     val result = books.find(book => book.ISBN == isbn).head
-    if (result.onLoan == true) true else false
+    if (result.onLoan) true else false
   }
-
 
 }
