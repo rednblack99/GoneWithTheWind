@@ -43,6 +43,9 @@ A Scala application that manages a library of books. It currently supports the f
 * Allows users to search by complete ISBN, as well as partial author or title
 * Allows users to loan a book - with the exception of reference books
 * Allows users to check if a book has been loaned
+* Allows users to return books they have loaned
+* Allows librarian to see which books are late on their loans
+* Allows librarian to see the names of users with late loans
 
 ## Installation
 
@@ -122,6 +125,8 @@ As a librarian,
 So that I can manage my library correctly,
 I need to know who has a book that is late
 ```
+
+#### To be implemented
 
 ```text
 As a librarian,
