@@ -61,24 +61,24 @@ class FeatureSpec extends FunSuite {
   }
 
   test("Librarian can see name of person who loaned book") {
-    library.loan("tfmsxhk", "Jasper Fforde", 14, LocalDate.now)
+    library.loan("tfmsxhk", "Jasper Fforde", 14, LocalDate.now, 1)
     assert(library.whoLoaned("tfmsxhk") === "Jasper Fforde")
     library.loan("lgzf", "Everybody sensible", 14, LocalDate.now)
     assert(library.whoLoaned("lgzf") === "Everybody sensible")
   }
 
   test("Librarian can see which loans are late") {
-    library2.loan("tfmsxhk", "Jasper Fforde", 1, LocalDate.of(2014, 6, 7))
-    library2.loan("lgzf", "Everybody sensible", 14, LocalDate.now)
+    library2.loan("tfmsxhk", "Jasper Fforde", 1, LocalDate.of(2014, 6, 7), 1)
+    library2.loan("lgzf", "Everybody sensible", 14, LocalDate.now, 1)
     val result = library2.lateLoans
-    assert(result(0) === Loan(Book("Eats, Shoots and Leaves:The Zero Tolerance Approach to Punctuation", "Truss, Lynne", "tfmsxhk", false, true), "Jasper Fforde", 1, LocalDate.of(2014, 6, 7)))
-    result should not contain Loan(Book("Northern Lights:His Dark Materials S.", "Pullman, Philip", "lgzf", false, true), "Everybody sensible", 14, LocalDate.now)
+    assert(result(0) === Loan(Book("Eats, Shoots and Leaves:The Zero Tolerance Approach to Punctuation", "Truss, Lynne", "tfmsxhk", false, true), "Jasper Fforde", 1, LocalDate.of(2014, 6, 7), 1))
+    result should not contain Loan(Book("Northern Lights:His Dark Materials S.", "Pullman, Philip", "lgzf", false, true), "Everybody sensible", 14, LocalDate.now, 1)
   }
 
-  test("Librarian can see names and associated fines of those with late loans") {
-    val result = library2.usersWithLateLoan
-    assert(result(0) === "Jasper Fforde: £5")
-    result should not contain("Everybody sensible")
-  }
+//  test("Librarian can see names and associated fines of those with late loans") {
+//    val result = library2.usersWithLateLoan
+//    assert(result(0) === "Jasper Fforde: £5")
+//    result should not contain("Everybody sensible")
+//  }
 
 }
