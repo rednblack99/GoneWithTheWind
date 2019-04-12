@@ -39,13 +39,15 @@ __|  \/\|/   /(____|/ //                    /  /||~|~|~|__
 
 A Scala application that manages a library of books. It currently supports the following features:
 
-* Stores a list of books
-* Allows users to search by complete ISBN, as well as partial author or title
-* Allows users to loan a book - with the exception of reference books
-* Allows users to check if a book has been loaned
-* Allows users to return books they have loaned
-* Allows librarian to see which books are late on their loans
-* Allows librarian to see the names of users with late loans
+* The library stores a list of books
+* Visitors can search by complete ISBN, as well as partial author or title
+* Visitors can loan a book - with the exception of reference books
+* Visitors can check if a book has been loaned
+* Visitors can return books they have loaned
+* Librarian can see which books are late on their loans
+* Librarian can see the names of users with late loans
+
+The application currently meets all of the below user stories, although there is still some refactoring and issues to address as outlined in the approach section.
 
 ## Installation
 
@@ -58,7 +60,9 @@ A Scala application that manages a library of books. It currently supports the f
 
 I used Scala Test to test-drive the development of this app, using a red, green, refactor cycle to meet the requirements of each user story in turn. Where possible, I started with the simplest solution and refactored from there (eg. dummy error messages before implementing exceptions).
 
-I attempted the single responsibility principle with regard to classes and methods, but in particular I don't think this was entirely successful regarding the library class. Moving forward I would like to extract 'search' and 'error' into separate classes.
+I attempted the single responsibility principle with regard to classes and methods, but I don't think this was entirely successful regarding the library class. Moving forward I would like to extract 'search' and 'error' into separate classes. The 'usersWithLateLoans' method is also looking a little long and could be separated.
+
+Issue: The calculateFine function is not currently performing entirely as expected. It calculates the difference in days but doesn't account for years or months. This will need to be addressed in a future build.
 
 ## User Stories
 
@@ -125,8 +129,6 @@ As a librarian,
 So that I can manage my library correctly,
 I need to know who has a book that is late
 ```
-
-#### To be implemented
 
 ```text
 As a librarian,
