@@ -24,4 +24,9 @@ class LoanSpec extends FunSuite {
     assert(loan2.late === false)
   }
 
+  test("calculate fine") {
+    val loan = new Loan(Book("Harry Potter and the Deathly Hallows", "Rowling, J.K.", "ipszbehyh"), "Jasper Fforde", 1, LocalDate.of(2019, 0, 0))
+    assert(loan.calculateFine === 101)
+  }
+
 }

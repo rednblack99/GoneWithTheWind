@@ -19,6 +19,7 @@ class FeatureSpec extends FunSuite {
   )
 
   val library = new Library(sampleBooks)
+  val library2 = new Library(sampleBooks)
 
   test("Users can search by complete ISBN") {
     assert(library.searchISBN("ipszbehyh") === Book("Harry Potter and the Deathly Hallows", "Rowling, J.K.", "ipszbehyh"))
@@ -67,7 +68,6 @@ class FeatureSpec extends FunSuite {
   }
 
   test("Librarian can see which loans are late") {
-    val library2 = new Library(sampleBooks)
     library2.loan("tfmsxhk", "Jasper Fforde", 1, LocalDate.of(2014, 6, 7))
     library2.loan("lgzf", "Everybody sensible", 14, LocalDate.now)
     val result = library2.lateLoans
@@ -75,12 +75,9 @@ class FeatureSpec extends FunSuite {
     result should not contain Loan(Book("Northern Lights:His Dark Materials S.", "Pullman, Philip", "lgzf", false, true), "Everybody sensible", 14, LocalDate.now)
   }
 
-  test("Librarian can see names of those with late loans") {
-    val library3 = new Library(sampleBooks)
-    library3.loan("tfmsxhk", "Jasper Fforde", 1, LocalDate.of(2014, 6, 7))
-    library3.loan("lgzf", "Everybody sensible", 14, LocalDate.now)
-    val result = library3.usersWithLateLoan
-    assert(result(0) === "Jasper Fforde")
+  test("Librarian can see names and associated fines of those with late loans") {
+    val result = library2.usersWithLateLoan
+    assert(result(0) === "Jasper Fforde: £5")
     result should not contain("Everybody sensible")
   }
 
