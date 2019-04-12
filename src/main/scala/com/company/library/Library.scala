@@ -8,6 +8,7 @@ class Library(val books: List[Book] = Books.all) {
 
   val DefaultLoanLength = 14
   val DefaultLoanStart = LocalDate.now
+  val DefaultCurrentDate = LocalDate.now
   val DefaultLateFee = 1
 
   var loanedBooks = new ListBuffer[Loan]
@@ -43,7 +44,6 @@ class Library(val books: List[Book] = Books.all) {
   def loan(isbn: String, name: String = "N/A", loanLength: Int = DefaultLoanLength, loanStart: LocalDate = DefaultLoanStart, lateFee: Int = DefaultLateFee): Unit = {
     val result = searchISBN(isbn)
     loanedBooks += Loan(result, name, loanLength, loanStart, lateFee)
-//    if (result.onLoan) throwError("onLoan")
     if (!result.reference) result.onLoan = true
   }
 
@@ -68,11 +68,17 @@ class Library(val books: List[Book] = Books.all) {
     loanedBooks.filter(_.late)
   }
 
-  def usersWithLateLoan: ListBuffer[String] = {
+  def usersWithLateLoan(currentDate: LocalDate = DefaultCurrentDate): ListBuffer[String] = {
     var lateUsers = new ListBuffer[String]
     val late = lateLoans
-    late.foreach {lateUsers += _.name}
+    for (e <- late) {
+      val name = e.name
+      val fine = e.calculateFine(currentDate).toString
+      lateUsers += s"$name: £$fine"
+    }
     lateUsers
   }
 
 }
+
+

@@ -75,10 +75,10 @@ class FeatureSpec extends FunSuite {
     result should not contain Loan(Book("Northern Lights:His Dark Materials S.", "Pullman, Philip", "lgzf", false, true), "Everybody sensible", 14, LocalDate.now, 1)
   }
 
-//  test("Librarian can see names and associated fines of those with late loans") {
-//    val result = library2.usersWithLateLoan
-//    assert(result(0) === "Jasper Fforde: £5")
-//    result should not contain("Everybody sensible")
-//  }
+  test("Librarian can see names and associated fines of those with late loans") {
+    val result = library2.usersWithLateLoan(LocalDate.of(2014, 6, 13))
+    assert(result(0) === "Jasper Fforde: £5")
+    result should not contain("Everybody sensible")
+  }
 
 }
