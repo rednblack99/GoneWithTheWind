@@ -42,7 +42,7 @@ class Library(val books: List[Book] = Books.all) {
   def loan(isbn: String, name: String = "N/A", loanLength: Int = DefaultLoanLength, loanStart: LocalDate = DefaultLoanStart): Unit = {
     val result = searchISBN(isbn)
     loanedBooks += Loan(result, name, loanLength, loanStart)
-    if (result.onLoan) throwError("onLoan")
+//    if (result.onLoan) throwError("onLoan")
     if (!result.reference) result.onLoan = true
   }
 
