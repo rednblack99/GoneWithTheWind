@@ -48,7 +48,7 @@ class Library(val books: List[Book] = Books.all) {
 
   def onLoan(isbn: String): Boolean = {
     val result = searchISBN(isbn)
-    if (result.onLoan) true else false
+    result.onLoan
   }
 
   def returnBook(isbn: String): Unit = {
