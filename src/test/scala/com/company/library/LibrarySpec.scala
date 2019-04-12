@@ -2,6 +2,8 @@ package com.company.library
 
 import org.scalatest.FunSuite
 import org.scalatest.Matchers._
+import java.time._
+import codes.reactive.scalatime._
 
 class LibrarySpec extends FunSuite {
 
@@ -38,7 +40,7 @@ class LibrarySpec extends FunSuite {
 
   test("loan") {
     assert(library.onLoan("ipszbehyh") === false)
-    library.loan("ipszbehyh")
+    library.loan("ipszbehyh", "N/A", 14, LocalDate.now)
     assert(library.onLoan("ipszbehyh") === true)
   }
 
@@ -47,7 +49,7 @@ class LibrarySpec extends FunSuite {
   }
 
   test("returnBook") {
-    library.loan("pidtkl")
+    library.loan("pidtkl", "N/A", 14, LocalDate.now)
     library.returnBook("pidtkl")
     assert(library.onLoan("pidtkl") === false)
   }

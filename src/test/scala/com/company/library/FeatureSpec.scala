@@ -39,12 +39,12 @@ class FeatureSpec extends FunSuite {
   }
 
   test("Users can loan books") {
-    library.loan("ipszbehyh")
+    library.loan("ipszbehyh", "N/A", 14, LocalDate.now)
     assert(library.onLoan("ipszbehyh") === true)
   }
 
   test("Users can return books to the library") {
-    library.loan("iamvmb")
+    library.loan("iamvmb", "N/A", 14, LocalDate.now)
     assert(library.onLoan("iamvmb") === true)
     library.returnBook("iamvmb")
     assert(library.onLoan("iamvmb") === false)
@@ -55,14 +55,14 @@ class FeatureSpec extends FunSuite {
   }
 
   test("Reference books cannot be loaned out") {
-    library.loan("giuivxo")
+    library.loan("giuivxo", "N/A", 14, LocalDate.now)
     assert(library.onLoan("giuivxo") === false)
   }
 
   test("User can see name of person who loaned book") {
-    library.loan("tfmsxhk", "Jasper Fforde")
+    library.loan("tfmsxhk", "Jasper Fforde", 14, LocalDate.now)
     assert(library.whoLoaned("tfmsxhk") === "Jasper Fforde")
-    library.loan("lgzf", "Everybody sensible")
+    library.loan("lgzf", "Everybody sensible", 14, LocalDate.now)
     assert(library.whoLoaned("lgzf") === "Everybody sensible")
   }
 
