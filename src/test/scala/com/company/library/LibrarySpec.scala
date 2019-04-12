@@ -3,7 +3,6 @@ package com.company.library
 import org.scalatest.FunSuite
 import org.scalatest.Matchers._
 import java.time._
-import codes.reactive.scalatime._
 
 class LibrarySpec extends FunSuite {
 

@@ -1,7 +1,6 @@
 package com.company.library
 
 import java.time._
-import codes.reactive.scalatime._
 
 
 case class Loan(book: Book, name: String, loanLength: Int, loanStart: LocalDate, lateFee: Int) {
@@ -13,9 +12,9 @@ case class Loan(book: Book, name: String, loanLength: Int, loanStart: LocalDate,
   }
 
   def calculateFine(currentDate: LocalDate = LocalDate.now): Int = {
-    println(LoanEnd)
-    println(LocalDate.now)
-    Period.between(LoanEnd, currentDate).getDays()
+    if(currentDate isBefore LoanEnd) throw new Exception("This book loan isn't late")
+    if(currentDate.getMonth != LoanEnd.getMonth) throw new Exception("Unfortunately this method can't handle month overdue books yet!")
+    Period.between(LoanEnd, currentDate).getDays
   }
 
 }

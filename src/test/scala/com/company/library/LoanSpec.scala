@@ -8,13 +8,14 @@ import org.scalatest.Matchers._
 
 class LoanSpec extends FunSuite {
 
-  val loan = new Loan(Book("Harry Potter and the Deathly Hallows", "Rowling, J.K.", "ipszbehyh"), "John Doe", 14, LocalDate.now, 1)
+  val Loan = new Loan(Book("Harry Potter and the Deathly Hallows", "Rowling, J.K.", "ipszbehyh"), "John Doe", 14, LocalDate.now, 1)
 
   test("Holds relevant info") {
-    assert(loan.book === Book("Harry Potter and the Deathly Hallows", "Rowling, J.K.", "ipszbehyh"))
-    assert(loan.name === "John Doe")
-    assert(loan.loanLength === 14)
-    assert(loan.loanStart === LocalDate.now)
+    assert(Loan.book === Book("Harry Potter and the Deathly Hallows", "Rowling, J.K.", "ipszbehyh"))
+    assert(Loan.name === "John Doe")
+    assert(Loan.loanLength === 14)
+    assert(Loan.loanStart === LocalDate.now)
+    assert(Loan.lateFee === 1)
   }
 
   test("late - returns Boolean for whether loan is late") {

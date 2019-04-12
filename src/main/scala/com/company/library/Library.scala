@@ -2,14 +2,12 @@ package com.company.library
 
 import scala.collection.mutable.ListBuffer
 import java.time._
-import codes.reactive.scalatime._
 
 class Library(val books: List[Book] = Books.all) {
 
-  val DefaultLoanLength = 14
-  val DefaultLoanStart = LocalDate.now
-  val DefaultCurrentDate = LocalDate.now
-  val DefaultLateFee = 1
+  val DefaultLoanLength: Int = 14
+  val DefaultCurrentDate: LocalDate = LocalDate.now
+  val DefaultLateFee: Int = 1
 
   var loanedBooks = new ListBuffer[Loan]
 
@@ -41,7 +39,7 @@ class Library(val books: List[Book] = Books.all) {
     results
   }
 
-  def loan(isbn: String, name: String = "N/A", loanLength: Int = DefaultLoanLength, loanStart: LocalDate = DefaultLoanStart, lateFee: Int = DefaultLateFee): Unit = {
+  def loan(isbn: String, name: String = "N/A", loanLength: Int = DefaultLoanLength, loanStart: LocalDate = DefaultCurrentDate, lateFee: Int = DefaultLateFee): Unit = {
     val result = searchISBN(isbn)
     loanedBooks += Loan(result, name, loanLength, loanStart, lateFee)
     if (!result.reference) result.onLoan = true
